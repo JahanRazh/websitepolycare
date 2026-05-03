@@ -383,6 +383,10 @@ section {
 .doc-card {
   text-align:center;
   padding:36px 28px;
+  min-height:260px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
 }
 .doc-card .doc-icon {
   width:64px; height:64px;
