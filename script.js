@@ -114,7 +114,9 @@ function revealOnScroll() {
 window.addEventListener('scroll', revealOnScroll);
 window.addEventListener('load', revealOnScroll);
 
-/* ===== Contact Form (Web3Forms) ===== */
+/* ===== Contact Form (EmailJS) ===== */
+emailjs.init("7FSX262aYAx_CXIFL");
+
 const contactForm = document.getElementById('contactForm');
 contactForm.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -124,14 +126,9 @@ contactForm.addEventListener('submit', async (e) => {
   btn.disabled = true;
 
   try {
-    const formData = new FormData(contactForm);
-    const response = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      body: formData,
-    });
-    const result = await response.json();
+    const result = await emailjs.sendForm('service_dgcsos5', 'template_7gl6yxk', contactForm);
 
-    if (result.success) {
+    if (result.status === 200) {
       btn.innerHTML = '&#10003; Message Sent!';
       btn.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
       contactForm.reset();
